@@ -1,0 +1,63 @@
+{
+  "name": "daily-report-vscode",
+  "displayName": "Daily Report",
+  "description": "VSCode extension for efficient daily report creation and management",
+  "version": "1.0.0",
+  "publisher": "your-publisher-name",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "dailyReport.createReport",
+        "title": "Daily Report: Create Daily Report",
+        "category": "Daily Report"
+      },
+      {
+        "command": "dailyReport.addEntry",
+        "title": "Daily Report: Add Report Entry",
+        "category": "Daily Report"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "dailyReport.createReport",
+        "key": "ctrl+shift+d",
+        "mac": "ctrl+shift+d"
+      },
+      {
+        "command": "dailyReport.addEntry",
+        "key": "ctrl+shift+s", 
+        "mac": "ctrl+shift+s"
+      }
+    ],
+    "configuration": {
+      "title": "Daily Report",
+      "properties": {
+        "dailyReport.reportsDirectory": {
+          "type": "string",
+          "default": "~/DailyReports",
+          "description": "Directory path where daily reports will be saved. Use absolute path (e.g., /Users/username/Documents/Reports) or relative to home directory (e.g., Documents/Reports)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "^16.x",
+    "typescript": "^4.4.4"
+  }
+}

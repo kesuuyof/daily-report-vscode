@@ -1,0 +1,13 @@
+{
+  "reportsDirectory": "~/DailyReports",
+  "fileNameFormat": "YYYY-MM-DD",
+  "timeFormat": "24h",
+  "template": {
+    "header": "# Daily Report - {{date}}",
+    "sections": [
+      "## 課題・所感",
+      "## 明日の予定",
+      "## 本日の作業・メモ"
+    ]
+  }
+}
