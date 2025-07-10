@@ -50,8 +50,8 @@
       },
       {
         "command": "dailyReport.importCalendar",
-        "key": "ctrl+shift+g",
-        "mac": "ctrl+shift+g"
+        "key": "ctrl+alt+g",
+        "mac": "ctrl+alt+g"
       }
     ],
     "configuration": {
