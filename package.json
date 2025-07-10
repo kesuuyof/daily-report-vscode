@@ -25,6 +25,16 @@
         "command": "dailyReport.addEntry",
         "title": "Daily Report: Add Report Entry",
         "category": "Daily Report"
+      },
+      {
+        "command": "dailyReport.importCalendar",
+        "title": "Daily Report: Import Today's Calendar Events",
+        "category": "Daily Report"
+      },
+      {
+        "command": "dailyReport.configureGasUrl",
+        "title": "Daily Report: Configure Google Apps Script URL",
+        "category": "Daily Report"
       }
     ],
     "keybindings": [
@@ -35,8 +45,13 @@
       },
       {
         "command": "dailyReport.addEntry",
-        "key": "ctrl+shift+s", 
+        "key": "ctrl+shift+s",
         "mac": "ctrl+shift+s"
+      },
+      {
+        "command": "dailyReport.importCalendar",
+        "key": "ctrl+shift+g",
+        "mac": "ctrl+shift+g"
       }
     ],
     "configuration": {
@@ -55,9 +70,14 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./"
   },
+  "dependencies": {
+    "abort-controller": "^3.0.0",
+    "node-fetch": "^3.3.2"
+  },
   "devDependencies": {
-    "@types/vscode": "^1.60.0",
     "@types/node": "^16.x",
+    "@types/node-fetch": "^2.6.7",
+    "@types/vscode": "^1.60.0",
     "typescript": "^4.4.4"
   }
 }

@@ -2,12 +2,23 @@
   "reportsDirectory": "~/DailyReports",
   "fileNameFormat": "YYYY-MM-DD",
   "timeFormat": "24h",
+  "googleAppsScript": {
+    "webAppUrl": "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec",
+    "timeout": 10000
+  },
+  "calendar": {
+    "timeZone": "Asia/Tokyo",
+    "includeAllDayEvents": true,
+    "includeLocation": true,
+    "includeAttendeeCount": true
+  },
   "template": {
     "header": "# Daily Report - {{date}}",
     "sections": [
+      "## 本日のMTG予定",
+      "## 本日の作業・メモ",
       "## 課題・所感",
-      "## 明日の予定",
-      "## 本日の作業・メモ"
+      "## 明日の予定"
     ]
   }
 }
