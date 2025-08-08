@@ -61,6 +61,13 @@
           "type": "string",
           "default": "~/DailyReports",
           "description": "Directory path where daily reports will be saved. Use absolute path (e.g., /Users/username/Documents/Reports) or relative to home directory (e.g., Documents/Reports)"
+        },
+        "dailyReport.gasWebAppUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Google Apps Script Web App URL for calendar integration. Format: https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec",
+          "pattern": "^https://script\\.google\\.com/macros/s/[a-zA-Z0-9_-]+/exec$",
+          "patternErrorMessage": "URL must be a valid Google Apps Script Web App URL"
         }
       }
     }

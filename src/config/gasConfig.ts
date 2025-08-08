@@ -44,7 +44,7 @@ export class GasConfigManager {
 
     static async setGasUrl(url: string): Promise<void> {
         const config = vscode.workspace.getConfiguration('dailyReport');
-        await config.update('gasWebAppUrl', url, vscode.ConfigurationTarget.Workspace);
+        await config.update('gasWebAppUrl', url, vscode.ConfigurationTarget.Global);
     }
 
     static async getCalendarConfig(): Promise<CalendarConfig> {
@@ -128,8 +128,8 @@ export class GasConfigManager {
             return 'URL is required';
         }
 
-        if (!url.startsWith('https://script.google.com/macros/s/')) {
-            return 'URL must be a valid Google Apps Script Web App URL starting with https://script.google.com/macros/s/';
+        if (!url.startsWith('https://script.google.com/macros/s/') && !url.startsWith('https://script.google.com/a/macros/')) {
+            return 'URL must be a valid Google Apps Script Web App URL starting with https://script.google.com/macros/s/ or https://script.google.com/a/macros/';
         }
 
         if (!url.endsWith('/exec')) {
@@ -137,7 +137,7 @@ export class GasConfigManager {
         }
 
         // Extract script ID for validation
-        const scriptIdMatch = url.match(/\/macros\/s\/([a-zA-Z0-9_-]+)\/exec$/);
+        const scriptIdMatch = url.match(/\/macros\/s\/([a-zA-Z0-9_-]+)\/exec$/) || url.match(/\/a\/macros\/[^\/]+\/s\/([a-zA-Z0-9_-]+)\/exec$/);
         if (!scriptIdMatch) {
             return 'Invalid Google Apps Script URL format';
         }
@@ -146,7 +146,7 @@ export class GasConfigManager {
     }
 
     static extractScriptId(url: string): string | null {
-        const match = url.match(/\/macros\/s\/([a-zA-Z0-9_-]+)\/exec$/);
+        const match = url.match(/\/macros\/s\/([a-zA-Z0-9_-]+)\/exec$/) || url.match(/\/a\/macros\/[^\/]+\/s\/([a-zA-Z0-9_-]+)\/exec$/);
         return match ? match[1] : null;
     }
 

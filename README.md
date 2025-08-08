@@ -6,7 +6,7 @@ VSCodeで日報作成・管理を効率化する拡張機能です。Googleカ�
 
 ### 1. 日報ファイル作成 (`Ctrl+Shift+D`)
 - 指定フォルダに日付プレフィックス付きMarkdownファイルを作成
-- ファイル名形式: `YYYY-MM-DD.md`
+- ファイル名形式: `YYYYMMDD.md`
 - テンプレートを使用して構造化された日報を生成
 
 ### 2. エントリ追記 (`Ctrl+Shift+S`)
@@ -71,15 +71,28 @@ https://script.google.com/macros/s/{SCRIPT_ID}/exec
 ## 設定
 
 ### VSCode設定（推奨）
-VSCodeの設定画面で `Daily Report: Reports Directory` を設定:
+VSCodeの**グローバル設定**で `Daily Report: Reports Directory` を設定:
 - `~/DailyReports` (デフォルト) - ホームディレクトリ下のDailyReportsフォルダ
 - `/absolute/path/to/reports` - 絶対パス
 - `Documents/Reports` - ホームディレクトリからの相対パス
 
+**設定方法**:
+1. `Ctrl+,` (設定を開く)
+2. 「Daily Report」で検索
+3. `Reports Directory` にパスを入力
+
+この設定により、どのフォルダでVSCodeを開いても同じ保存先が使用されます。
+
 ### Google Apps Script URL設定
 
-カレンダー連携を使用するには、GAS Web App URLの設定が必要です：
+カレンダー連携を使用するには、GAS Web App URLの設定が必要です。以下のいずれかの方法で設定できます：
 
+**方法1: VSCode設定画面（推奨）**
+1. `Ctrl+,` (設定を開く)
+2. 「Daily Report」で検索
+3. `Gas Web App Url` にURLを入力
+
+**方法2: コマンドパレット**
 1. VSCodeでコマンドパレット（`Ctrl+Shift+P`）を開く
 2. 「Daily Report: Configure Google Apps Script URL」を実行
 3. 取得したWeb App URLを入力
@@ -90,7 +103,7 @@ VSCodeの設定画面で `Daily Report: Reports Directory` を設定:
 ```json
 {
   "reportsDirectory": "~/DailyReports",
-  "fileNameFormat": "YYYY-MM-DD",
+  "fileNameFormat": "YYYYMMDD",
   "timeFormat": "24h",
   "googleAppsScript": {
     "webAppUrl": "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec",

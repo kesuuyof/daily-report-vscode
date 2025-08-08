@@ -11,10 +11,19 @@ export class FileManager {
     this.config = config;
   }
 
-  private formatDate(date: Date): string {
+  private formatDateForFile(date: Date): string {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
+    // File naming: YYYYMMDD (no hyphens)
+    return `${year}${month}${day}`;
+  }
+
+  private formatDateForDisplay(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    // Display in header: YYYY-MM-DD
     return `${year}-${month}-${day}`;
   }
 
@@ -55,7 +64,7 @@ export class FileManager {
 
   public getTodayFileInfo(): FileInfo {
     const today = new Date();
-    const dateStr = this.formatDate(today);
+    const dateStr = this.formatDateForFile(today);
     const reportsDir = this.getReportsDirectory();
     const filePath = path.join(reportsDir, `${dateStr}.md`);
     
@@ -70,18 +79,18 @@ export class FileManager {
     this.ensureReportsDirectory();
     
     const targetDate = date || new Date();
-    const dateStr = this.formatDate(targetDate);
+    const displayDateStr = this.formatDateForDisplay(targetDate);
     const fileInfo = this.getTodayFileInfo();
     
     if (fileInfo.exists) {
-      vscode.window.showInformationMessage(`Daily report for ${dateStr} already exists.`);
+      vscode.window.showInformationMessage(`Daily report for ${displayDateStr} already exists.`);
       return fileInfo.path;
     }
 
-    const template = this.generateTemplate(dateStr);
+    const template = this.generateTemplate(displayDateStr);
     fs.writeFileSync(fileInfo.path, template, 'utf8');
     
-    vscode.window.showInformationMessage(`Daily report created: ${dateStr}.md`);
+    vscode.window.showInformationMessage(`Daily report created: ${path.basename(fileInfo.path)}`);
     return fileInfo.path;
   }
 

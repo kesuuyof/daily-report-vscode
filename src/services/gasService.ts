@@ -146,7 +146,7 @@ export class GasService {
                 if (!value) {
                     return 'URL is required';
                 }
-                if (!value.startsWith('https://script.google.com/macros/s/')) {
+                if (!value.startsWith('https://script.google.com/')) {
                     return 'URL must be a valid Google Apps Script Web App URL';
                 }
                 return null;
@@ -156,9 +156,9 @@ export class GasService {
         if (newUrl) {
             this.gasUrl = newUrl;
             
-            // Save to VSCode settings
+            // Save to VSCode settings (Global)
             const config = vscode.workspace.getConfiguration('dailyReport');
-            await config.update('gasWebAppUrl', newUrl, vscode.ConfigurationTarget.Workspace);
+            await config.update('gasWebAppUrl', newUrl, vscode.ConfigurationTarget.Global);
             
             vscode.window.showInformationMessage('Google Apps Script URL configured successfully!');
         }
